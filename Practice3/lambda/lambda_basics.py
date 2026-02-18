@@ -16,3 +16,6 @@ mytripler = myfunc(3)
 
 print(mydoubler(11))
 print(mytripler(11))
+
+x = lambda b: b > 5
+print(x(6))

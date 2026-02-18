@@ -44,3 +44,9 @@ def my_function(person):
 my_person = {"name": "Emil", "age": 25}
 my_function(my_person)
 
+
+
+def greet(name):
+  print(f"Hello, {name}!")
+
+greet("Ivan")
