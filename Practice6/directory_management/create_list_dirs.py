@@ -3,12 +3,12 @@ path = "newdir"
 os.mkdir(path)
 os.makedirs(path, exist_ok=True)
 
-# список файлов и папок
 os.listdir(path)
 
-os.scandir(path)
+path2 = "newdir2"
+os.chdir(path2)
+os.rmdir(path2)
 
-os.path.exists(path)
 
 os.path.isdir(path)
 
