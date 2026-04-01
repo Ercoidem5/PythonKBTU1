@@ -9,7 +9,7 @@ def get_connection():
         conn = psycopg2.connect(**DB_CONFIG)
         return conn
     except psycopg2.OperationalError as e:
-        print(f"[ERROR] Could not connect to PostgreSQL: {e}")
+        print(f"Could not connect to PostgreSQL: {e}")
         raise
 
 
@@ -25,9 +25,9 @@ def create_database_if_not_exists():
     cur.execute("SELECT 1 FROM pg_database WHERE datname = %s", (db_name,))
     if not cur.fetchone():
         cur.execute(f'CREATE DATABASE "{db_name}"')
-        print(f"[INFO] Database '{db_name}' created.")
+        print(f"Database '{db_name}' created.")
     else:
-        print(f"[INFO] Database '{db_name}' already exists.")
+        print(f"Database '{db_name}' already exists.")
 
     cur.close()
     conn.close()

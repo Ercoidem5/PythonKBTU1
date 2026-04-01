@@ -235,13 +235,12 @@ def delete_contact():
 
 
 MENU = """
-PhoneBook                    
-1. Import contacts from CSV         
-2. Add contact (console)            
-3. Update contact                   
-4. Search / list contacts           
-5. Delete contact                   
-0. Exit                             
+1. Import contacts from CSV
+2. Add contact (console)
+3. Update contact
+4. Search / list contacts
+5. Delete contact
+0. Exit
 
 """
 
