@@ -39,13 +39,6 @@ AS $$
 DECLARE
     v_offset INT;
 BEGIN
-    -- Validate inputs
-    IF page_size <= 0 THEN
-        RAISE EXCEPTION 'page_size must be a positive integer, got %', page_size;
-    END IF;
-    IF page_num <= 0 THEN
-        RAISE EXCEPTION 'page_num must be a positive integer, got %', page_num;
-    END IF;
 
     v_offset := (page_num - 1) * page_size;
 
