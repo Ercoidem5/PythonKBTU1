@@ -1,11 +1,10 @@
-import os
 import psycopg2
 from connect import get_connection
 
 
 def print_rows(rows: list, headers=("ID", "First name", "Last name", "Phone")):
     if not rows:
-        print(" no results")
+        print("no results")
         return
     widths = [max(len(str(h)), max(len(str(r[i])) for r in rows))
               for i, h in enumerate(headers)]
@@ -17,24 +16,11 @@ def print_rows(rows: list, headers=("ID", "First name", "Last name", "Phone")):
         print(fmt.format(*[str(c) if c is not None else "" for c in row]))
 
 
-def ensure_table(conn):
-    with conn.cursor() as cur:
-        cur.execute("""
-            CREATE TABLE IF NOT EXISTS phonebook (
-                id         SERIAL PRIMARY KEY,
-                first_name VARCHAR(100) NOT NULL,
-                last_name  VARCHAR(100),
-                phone      VARCHAR(20)  NOT NULL UNIQUE
-            );
-        """)
-    conn.commit()
-
-
 def search_contacts():
-    pattern = input("  Enter search pattern: ").strip()
+    pattern = input("Enter search pattern(frist_name, last_name, phone): ").strip()
     if not pattern:
         print("Pattern cannot be empty.")
-        return
+        return  
 
     conn = get_connection()
     try:
@@ -50,10 +36,10 @@ def search_contacts():
 
 
 def upsert_single():
-    print("\n── Insert / Update contact ──")
-    first = input("  First name : ").strip()
-    last  = input("  Last name  : ").strip() or None
-    phone = input("  Phone      : ").strip()
+    print("Insert / Update contact")
+    first = input("First name: ").strip()
+    last  = input("Last name: ").strip() or None
+    phone = input("Phone: ").strip()
 
     if not first or not phone:
         print("First name and phone are required.")
@@ -172,7 +158,7 @@ def delete_contact():
 MENU = """
 1. Search contacts
 2. Insert / update one contact
-3. Bulk insert contacts (with validation)
+3. Bulk insert contacts
 4. Browse contact
 5. Delete contact
 0. Exit
@@ -180,12 +166,6 @@ MENU = """
 
 
 def main():
-    conn = get_connection()
-    try:
-        with conn:
-            ensure_table(conn)
-    finally:
-        conn.close()
 
     while True:
         print(MENU)

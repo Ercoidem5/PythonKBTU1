@@ -1,9 +1,9 @@
 CREATE OR REPLACE FUNCTION search_contacts(pattern TEXT)
 RETURNS TABLE (
     id         INT,
-    first_name VARCHAR,
-    last_name  VARCHAR,
-    phone      VARCHAR
+    first_name VARCHAR(255),
+    last_name  VARCHAR(255),
+    phone      VARCHAR(255)
 )
 LANGUAGE plpgsql
 AS $$
@@ -15,11 +15,11 @@ BEGIN
             p.last_name,
             p.phone
         FROM phonebook p
-        WHERE
+        WHERE   
             p.first_name ILIKE '%' || pattern || '%'
             OR p.last_name  ILIKE '%' || pattern || '%'
             OR p.phone      ILIKE '%' || pattern || '%'
-        ORDER BY p.first_name;
+        ORDER BY p.first_name;  
 END;
 $$;
 
@@ -30,9 +30,9 @@ CREATE OR REPLACE FUNCTION get_contacts_paginated(
 )
 RETURNS TABLE (
     id         INT,
-    first_name VARCHAR,
-    last_name  VARCHAR,
-    phone      VARCHAR
+    first_name VARCHAR(255),
+    last_name  VARCHAR(255),
+    phone      VARCHAR(255)
 )
 LANGUAGE plpgsql
 AS $$

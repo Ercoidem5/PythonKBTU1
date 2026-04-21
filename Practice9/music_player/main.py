@@ -16,7 +16,7 @@ GRAY = (40, 40, 40)
 ACCENT = (0, 200, 120)
 LIGHT_GRAY = (160, 160, 160)
 
-font_med = pygame.font.SysFont("monospace", 18)
+font = pygame.font.SysFont("monospace", 18)
 
 MUSIC_FOLDER = os.path.join(os.path.dirname(__file__), "music")
 player = Player(MUSIC_FOLDER)
@@ -57,13 +57,11 @@ while running:
         player.next_track()
 
 
-    track_label = font_med.render("NOW PLAYING", True, LIGHT_GRAY)
+    track_label = font.render("NOW PLAYING", True, LIGHT_GRAY)
     screen.blit(track_label, (40, 90))
 
     track_name = player.get_track_name()
-    if len(track_name) > 40:
-        track_name = track_name[:37] + "..."
-    track_text = font_med.render(track_name, True, WHITE)
+    track_text = font.render(track_name, True, WHITE)
     screen.blit(track_text, (40, 115))
 
     if player.playing and not player.paused:
@@ -76,20 +74,20 @@ while running:
         status_text = "STOPPED"
         status_color = LIGHT_GRAY
 
-    status = font_med.render(status_text, True, status_color)
+    status = font.render(status_text, True, status_color)
     screen.blit(status, (40, 155))
 
-    pos_label = font_med.render("TIME: " + player.get_pos(), True, LIGHT_GRAY)
+    pos_label = font.render("TIME: " + player.get_pos(), True, LIGHT_GRAY)
     screen.blit(pos_label, (40, 185))
 
     if player.tracks:
-        idx_text = font_med.render(
+        idx_text = font.render(
             f"TRACK {player.index + 1} / {len(player.tracks)}", True, LIGHT_GRAY
         )
         screen.blit(idx_text, (WIDTH - idx_text.get_width() - 40, 185))
 
     for i, line in enumerate(controls):
-        ctrl = font_med.render(line, True, LIGHT_GRAY)
+        ctrl = font.render(line, True, LIGHT_GRAY)
         screen.blit(ctrl, (40, 258 + i * 20))
 
     pygame.display.flip()

@@ -241,7 +241,6 @@ MENU = """
 4. Search / list contacts
 5. Delete contact
 0. Exit
-
 """
 
 def main():

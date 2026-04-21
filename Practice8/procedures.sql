@@ -1,7 +1,7 @@
     CREATE OR REPLACE PROCEDURE upsert_contact(
-        p_first_name VARCHAR,
-        p_last_name  VARCHAR DEFAULT NULL,
-        p_phone      VARCHAR DEFAULT NULL
+        p_first_name VARCHAR(255),
+        p_last_name  VARCHAR(255) DEFAULT NULL,
+        p_phone      VARCHAR(255) DEFAULT NULL
     )
     LANGUAGE plpgsql
     AS $$
@@ -26,10 +26,10 @@
     AS $$
     DECLARE
         i           INT;
-        v_name      VARCHAR;
-        v_phone     VARCHAR;
-        v_first     VARCHAR;
-        v_last      VARCHAR;
+        v_name      VARCHAR(255);
+        v_phone     VARCHAR(255);
+        v_first     VARCHAR(255);
+        v_last      VARCHAR(255);
     BEGIN
 
         DROP TABLE IF EXISTS tmp_invalid_contacts;
@@ -59,8 +59,8 @@
 
 
     CREATE OR REPLACE PROCEDURE delete_contact(
-        p_username VARCHAR DEFAULT NULL,
-        p_phone    VARCHAR DEFAULT NULL
+        p_username VARCHAR(255) DEFAULT NULL,
+        p_phone    VARCHAR(255) DEFAULT NULL
     )
     LANGUAGE plpgsql
     AS $$
