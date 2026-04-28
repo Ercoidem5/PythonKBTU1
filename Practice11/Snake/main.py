@@ -65,6 +65,7 @@ while running:
     #проверка столкновения с собой
     if new_head in snake:
         running = False
+        break
 
     snake.insert(0, new_head)
 

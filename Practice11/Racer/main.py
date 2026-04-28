@@ -21,7 +21,7 @@ coin_timer = 0
 score = 0
 
 #через сколько очков ускоряется враг
-LEVEL_STEP = 5
+level_step = 5
 
 font = pygame.font.SysFont(None, 36)
 
@@ -76,8 +76,8 @@ while running:
         elif coin["rect"].y > HEIGHT:
             coins.remove(coin)
 
-    #ускорение врага каждые LEVEL_STEP очков
-    enemy_speed = 4 + (score // LEVEL_STEP)
+    #ускорение врага каждые level_step очков
+    enemy_speed = 4 + (score // level_step)
 
     #столкновение с врагом
     if car.colliderect(enemy):

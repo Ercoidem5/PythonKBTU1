@@ -17,11 +17,11 @@ colors = [
     (255, 255, 255)
 ]
 
-current_color = (0, 0, 0)  #текущий выбранный цвет
-tool = "brush"             #текущий инструмент
+current_color = (0, 0, 0) #текущий выбранный цвет
+tool = "brush" #текущий инструмент
 
-drawing = False            #флаг рисования
-start_pos = (0, 0)         #начальная точка фигуры
+drawing = False #флаг рисования
+start_pos = (0, 0) #начальная точка фигуры
 
 #поверхность для рисования
 canvas = pygame.Surface((WIDTH, HEIGHT))
