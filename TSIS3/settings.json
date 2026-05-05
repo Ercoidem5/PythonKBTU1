@@ -1,10 +1,10 @@
 {
   "sound": true,
   "car_color": [
+    255,
     0,
-    0,
-    255
+    0
   ],
   "difficulty": "hard",
-  "username": "fourth"
+  "username": "five"
 }

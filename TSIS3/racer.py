@@ -27,7 +27,7 @@ settings = None
 typing_name = False
 name_buffer = ""
 
-# init 
+# INIT 
 def reset_game():
     global car, enemy, coins, score, distance, coin_score, spawn_timer
     car = pygame.Rect(180, 500, 40, 60)
@@ -47,18 +47,18 @@ def spawn_objects():
         powerups.append({
             "rect": pygame.Rect(random.choice(LANES)+8, -20, 24, 24),
             "type": kind,
-            "ttl": 300  # время жизни
+            "ttl": 300  # ВРЕМЯ ЖИЗНИ
         })
 
 
-# game update
+# GAME UPDATE
 def update_game():
     global score, distance, coin_score, spawn_timer, state
     global active_power, power_timer, shield_active
 
     keys = pygame.key.get_pressed()
 
-    # ---------------- SPEED (nitro) ----------------
+    # NITRO
     speed = 5
     if active_power == "nitro":
         if pygame.time.get_ticks() < power_timer:
@@ -71,17 +71,17 @@ def update_game():
     if keys[pygame.K_RIGHT]:
         car.x = min(WIDTH - 40, car.x + speed)
 
-    # ---------------- SCORE ----------------
+    # SCORE
     distance += 1
     score = coin_score + distance // 10
 
-    # ---------------- SPAWN ----------------
+    # SPAWN
     spawn_timer += 1
     if spawn_timer > 50:
         spawn_objects()
         spawn_timer = 0
 
-    # ---------------- POWERUPS ----------------
+    # POWERUPS
     for p in powerups[:]:
         p["rect"].y += 5
         p["ttl"] -= 1
@@ -96,14 +96,14 @@ def update_game():
                 shield_active = True
 
             elif p["type"] == "repair":
-                shield_active = True  # можно улучшить
+                shield_active = True  
 
             powerups.remove(p)
 
         elif p["ttl"] <= 0 or p["rect"].y > HEIGHT:
             powerups.remove(p)
 
-    # ---------------- ENEMIES ----------------
+    # ENEMIES 
     for e in enemy[:]:
         e.y += 5
 
@@ -124,7 +124,7 @@ def update_game():
         if e.y > HEIGHT:
             enemy.remove(e)
 
-    # ---------------- COINS ----------------
+    # COINS 
     for c in coins[:]:
         c.y += 5
 
@@ -135,7 +135,7 @@ def update_game():
         elif c.y > HEIGHT:
             coins.remove(c)
 
-# draw game
+# DRAW GAME
 def draw_game(screen, font):
     screen.fill(BLACK)
 
@@ -168,7 +168,7 @@ def draw_game(screen, font):
         screen.blit(font.render(text, True, (255,255,255)), (10, 70))
 
 
-# main loop
+# MAIN LOOP
 def run():
     global state, settings
     global typing_name, name_buffer
@@ -202,7 +202,7 @@ def run():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = event.pos
 
-                # ---------------- MENU ----------------
+                # MENU
                 if state == "menu":
                     btns = draw_menu(screen, font, big)
                     if btns[0].clicked(pos):
@@ -215,7 +215,7 @@ def run():
                     elif btns[3].clicked(pos):
                         running = False
 
-                # settings
+                # SETTINGS
                 elif state == "settings":
                     btns = draw_settings(screen, font, big,
                                          settings["sound"],
@@ -236,14 +236,14 @@ def run():
                         i = diff.index(settings["difficulty"])
                         settings["difficulty"] = diff[(i+1)%3]
 
-                    elif btns[3].clicked(pos):  # Name button
+                    elif btns[3].clicked(pos):  # NAME BUTTON
                         typing_name = True
                         name_buffer = settings["username"]
-                    elif btns[4].clicked(pos):  # Back
+                    elif btns[4].clicked(pos):  # BACK
                         state = "menu"
                     save_settings(settings)
 
-                # game over
+                # GAME OVER
                 elif state == "over":
                     btns = draw_game_over(screen, font, big, score, distance, coin_score)
                     if btns[0].clicked(pos):
@@ -252,13 +252,13 @@ def run():
                     elif btns[1].clicked(pos):
                         state = "menu"
 
-                # leaderboard
+                # LEADERBOARD
                 elif state == "board":
                     back = draw_leaderboard(screen, font, big, load_scores())
                     if back.clicked(pos):
                         state = "menu"
 
-        # render states
+        # RENDER STATES
         if state == "menu":
             draw_menu(screen, font, big)
 

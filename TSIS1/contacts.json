@@ -1,0 +1,238 @@
+[
+    {
+        "first_name": "Alice",
+        "last_name": "Smith",
+        "email": "alice.smith@gmail.com",
+        "birthday": "1990-05-12",
+        "group": "Friend",
+        "phones": [
+            {
+                "phone": "+77001112233",
+                "type": "mobile"
+            },
+            {
+                "phone": "+77001112234",
+                "type": "home"
+            }
+        ]
+    },
+    {
+        "first_name": "Bob",
+        "last_name": "Jones",
+        "email": "bob.jones@work.com",
+        "birthday": "1985-11-23",
+        "group": "Work",
+        "phones": [
+            {
+                "phone": "+77002223344",
+                "type": "mobile"
+            },
+            {
+                "phone": "+77002223345",
+                "type": "work"
+            }
+        ]
+    },
+    {
+        "first_name": "Carol",
+        "last_name": "White",
+        "email": "carol.white@yahoo.com",
+        "birthday": "1992-03-07",
+        "group": "Family",
+        "phones": [
+            {
+                "phone": "+77003334455",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "first_name": "David",
+        "last_name": "Brown",
+        "email": "david.brown@gmail.com",
+        "birthday": "1988-07-19",
+        "group": "Work",
+        "phones": [
+            {
+                "phone": "+77004445566",
+                "type": "work"
+            },
+            {
+                "phone": "+77004445567",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "first_name": "Emma",
+        "last_name": "Johnson",
+        "email": "emma.j@outlook.com",
+        "birthday": "1995-01-30",
+        "group": "Friend",
+        "phones": [
+            {
+                "phone": "+77005556677",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "first_name": "Frank",
+        "last_name": "Miller",
+        "email": "frank.miller@work.com",
+        "birthday": "1980-09-14",
+        "group": "Work",
+        "phones": [
+            {
+                "phone": "+77006667788",
+                "type": "work"
+            },
+            {
+                "phone": "+77006667789",
+                "type": "home"
+            }
+        ]
+    },
+    {
+        "first_name": "Grace",
+        "last_name": "Wilson",
+        "email": "grace.w@gmail.com",
+        "birthday": "1993-12-25",
+        "group": "Family",
+        "phones": [
+            {
+                "phone": "+77007778899",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "first_name": "Henry",
+        "last_name": "Moore",
+        "email": "henry.moore@yahoo.com",
+        "birthday": "1975-04-08",
+        "group": "Other",
+        "phones": [
+            {
+                "phone": "+77008889900",
+                "type": "home"
+            },
+            {
+                "phone": "+77008889901",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "first_name": "Isla",
+        "last_name": "Taylor",
+        "email": "isla.t@gmail.com",
+        "birthday": "1998-06-17",
+        "group": "Friend",
+        "phones": [
+            {
+                "phone": "+77009990011",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "first_name": "Ivan",
+        "last_name": "D",
+        "email": "awd",
+        "birthday": null,
+        "group": "Work",
+        "phones": [
+            {
+                "phone": "77777",
+                "type": "home"
+            }
+        ]
+    },
+    {
+        "first_name": "Jack",
+        "last_name": "Anderson",
+        "email": "jack.a@work.com",
+        "birthday": "1983-02-28",
+        "group": "Work",
+        "phones": [
+            {
+                "phone": "+77010001122",
+                "type": "work"
+            }
+        ]
+    },
+    {
+        "first_name": "Karen",
+        "last_name": "Thomas",
+        "email": "karen.thomas@gmail.com",
+        "birthday": "1991-08-03",
+        "group": "Family",
+        "phones": [
+            {
+                "phone": "+77011112233",
+                "type": "mobile"
+            },
+            {
+                "phone": "+77011112234",
+                "type": "home"
+            }
+        ]
+    },
+    {
+        "first_name": "Leo",
+        "last_name": "Jackson",
+        "email": "leo.j@outlook.com",
+        "birthday": "1996-10-11",
+        "group": "Friend",
+        "phones": [
+            {
+                "phone": "+77012223344",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "first_name": "Mia",
+        "last_name": "Harris",
+        "email": "mia.harris@yahoo.com",
+        "birthday": "1989-03-22",
+        "group": "Other",
+        "phones": [
+            {
+                "phone": "+77013334455",
+                "type": "mobile"
+            },
+            {
+                "phone": "+77013334456",
+                "type": "work"
+            }
+        ]
+    },
+    {
+        "first_name": "Nathan",
+        "last_name": "Martin",
+        "email": "nathan.m@gmail.com",
+        "birthday": "1977-11-05",
+        "group": "Work",
+        "phones": [
+            {
+                "phone": "+77014445566",
+                "type": "work"
+            }
+        ]
+    },
+    {
+        "first_name": "Olivia",
+        "last_name": "Garcia",
+        "email": "olivia.g@gmail.com",
+        "birthday": "1994-07-29",
+        "group": "Friend",
+        "phones": [
+            {
+                "phone": "+77015556677",
+                "type": "mobile"
+            }
+        ]
+    }
+]

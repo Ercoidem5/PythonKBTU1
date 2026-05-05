@@ -10,7 +10,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("TSIS 2 Paint")
 clock = pygame.time.Clock()
 
-# settings 
+# SETTINGS 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GRAY = (200, 200, 200)
@@ -41,13 +41,13 @@ drawing = False
 start_pos = (0, 0)
 last_pos = (0, 0)
 
-# text tool
+# TEXT TOOL
 text_mode = False
 text_pos = (0, 0)
 text_input = ""
 font = pygame.font.SysFont(None, 28)
 
-# helpers 
+# HELPERS 
 def normalize_rect(start, end):
     x1, y1 = start
     x2, y2 = end
@@ -147,27 +147,27 @@ while running:
     screen.fill(GRAY)
     screen.blit(canvas, (0, 0))
 
-    # palette
+    # PALLETE
     for i, color in enumerate(colors):
         pygame.draw.rect(screen, color, (10 + i * 50, 10, 40, 40))
         pygame.draw.rect(screen, BLACK, (10 + i * 50, 10, 40, 40), 1)
 
-    # tool buttons
+    # TOOL BUTTONS
     for i, name in enumerate(buttons):
         pygame.draw.rect(screen, BLACK, (10 + i * 90, 60, 80, 30))
         txt = font.render(name, True, WHITE)
         screen.blit(txt, (15 + i * 90, 67))
 
-    # brush size text
+    # BRUSH SIZE TEXT
     size_text = font.render(f"Size: {brush_size}px (1/2/3)", True, BLACK)
     screen.blit(size_text, (10, 105))
 
-    # preview
+    # PREVIEW
     preview = screen.copy()
     draw_preview(preview)
     screen.blit(preview, (0, 0))
 
-    # text preview
+    # TEXT PREVIEW
     if text_mode:
         txt = font.render(text_input, True, current_color)
         screen.blit(txt, text_pos)
@@ -177,14 +177,14 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        # keyboard
+        # KEYBOARD
         if event.type == pygame.KEYDOWN:
 
-            # save
+            # SAVE
             if event.key == pygame.K_s and pygame.key.get_mods() & pygame.KMOD_CTRL:
                 save_canvas()
 
-            # brush sizes
+            # BRUSH SIZES
             elif event.key == pygame.K_1:
                 brush_size = brush_sizes[1]
             elif event.key == pygame.K_2:
@@ -192,7 +192,7 @@ while running:
             elif event.key == pygame.K_3:
                 brush_size = brush_sizes[3]
 
-            # text typing
+            # TEXT TYPING
             if text_mode:
                 if event.key == pygame.K_RETURN:
                     txt = font.render(text_input, True, current_color)
@@ -210,27 +210,27 @@ while running:
                 else:
                     text_input += event.unicode
 
-        # mouse down
+        # MOUSE DOWN
         if event.type == pygame.MOUSEBUTTONDOWN:
             x, y = event.pos
 
-            # choose color
+            # CHOOSE COLOR
             for i, color in enumerate(colors):
                 if pygame.Rect(10 + i * 50, 10, 40, 40).collidepoint(x, y):
                     current_color = color
 
-            # choose tool
+            # CHOOSE TOOL
             for i, name in enumerate(buttons):
                 if pygame.Rect(10 + i * 90, 60, 80, 30).collidepoint(x, y):
                     tool = name.lower()
 
-            # text tool
+            # TEXT TOOL
             if tool == "text":
                 text_mode = True
                 text_input = ""
                 text_pos = event.pos
 
-            # fill tool
+            # FILL TOOL
             elif tool == "fill":
                 flood_fill(canvas, x, y, current_color)
 
@@ -239,7 +239,7 @@ while running:
                 start_pos = event.pos
                 last_pos = event.pos
 
-        # mouse move
+        # MOUSE MOVE
         if event.type == pygame.MOUSEMOTION and drawing:
 
             if tool == "pencil":
@@ -252,7 +252,7 @@ while running:
                                  last_pos, event.pos, brush_size * 2)
                 last_pos = event.pos
 
-        # mouse up
+        # MOUSE UP
         if event.type == pygame.MOUSEBUTTONUP and drawing:
             drawing = False
             end_pos = event.pos

@@ -1,16 +1,18 @@
 import pygame
-import game
 from db import init_db, get_top10
+import game
 
 pygame.init()
 screen = pygame.display.set_mode((600, 600))
+pygame.display.set_caption("Snake")
 
 init_db()
 
 
-# ---------- USERNAME ----------
+# INPUT USERNAME
 def input_username():
-    font = pygame.font.SysFont(None, 40)
+    font = pygame.font.SysFont(None, 48)
+    small = pygame.font.SysFont(None, 32)
     name = ""
 
     while True:
@@ -18,23 +20,29 @@ def input_username():
 
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
+                pygame.quit()
                 exit()
             if e.type == pygame.KEYDOWN:
                 if e.key == pygame.K_RETURN and name.strip():
-                    return name
+                    return name.strip()
                 elif e.key == pygame.K_BACKSPACE:
                     name = name[:-1]
                 else:
-                    if len(name) < 15:
+                    if len(name) < 15 and e.unicode.isprintable():
                         name += e.unicode
 
-        txt = font.render("Name: " + name, True, (255, 255, 255))
-        screen.blit(txt, (100, 250))
+        title = font.render("Enter Username", True, (255, 255, 255))
+        txt   = font.render(name, True, (0, 255, 0))
+        hint  = small.render("Press ENTER to continue", True, (150, 150, 150))
+
+        screen.blit(title, (300 - title.get_width() // 2, 200))
+        screen.blit(txt,   (300 - txt.get_width() // 2,   300))
+        screen.blit(hint,  (300 - hint.get_width() // 2,  380))
 
         pygame.display.flip()
 
 
-# ---------- LEADERBOARD ----------
+# LEADERBOARD
 def show_leaderboard():
     data = get_top10()
     font = pygame.font.SysFont(None, 30)
@@ -44,39 +52,41 @@ def show_leaderboard():
 
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
+                pygame.quit()
                 exit()
             if e.type == pygame.KEYDOWN:
                 return
 
-        title = font.render("Leaderboard", True, (255,255,255))
-        screen.blit(title, (200, 20))
+        title = font.render("Leaderboard", True, (255, 255, 255))
+        screen.blit(title, (300 - title.get_width() // 2, 20))
 
         for i, row in enumerate(data):
-            text = f"{i+1}. {row[0]}  Score:{row[1]}  Lvl:{row[2]}"
-            screen.blit(font.render(text, True, (255, 255, 255)), (50, 80 + i * 30))
+            text = f"{i+1}. {row[0]}  Score: {row[1]}  Lvl: {row[2]}"
+            screen.blit(font.render(text, True, (255, 255, 255)), (50, 70 + i * 30))
 
-        hint = font.render("Press any key to go back", True, (150,150,150))
-        screen.blit(hint, (120, 550))
+        hint = font.render("Press any key to go back", True, (150, 150, 150))
+        screen.blit(hint, (300 - hint.get_width() // 2, 550))
 
         pygame.display.flip()
 
 
-# ---------- MAIN MENU ----------
+# MAIN MENU
 def main_menu():
-    font = pygame.font.SysFont(None, 48)
+    font  = pygame.font.SysFont(None, 56)
+    small = pygame.font.SysFont(None, 38)
 
     while True:
         screen.fill((0, 0, 0))
 
-        title = font.render("SNAKE", True, (255,255,255))
-        play = font.render("P - Play", True, (200,200,200))
-        leaderboard = font.render("L - Leaderboard", True, (200,200,200))
-        quit_txt = font.render("Q - Quit", True, (200,200,200))
-
-        screen.blit(title, (240, 150))
-        screen.blit(play, (220, 250))
-        screen.blit(leaderboard, (160, 320))
-        screen.blit(quit_txt, (220, 390))
+        items = [
+            (font,  "SNAKE",             (255, 255, 255), 140),
+            (small, "P  —  Play",        (200, 200, 200), 250),
+            (small, "L  —  Leaderboard", (200, 200, 200), 310),
+            (small, "Q  —  Quit",        (200, 200, 200), 370),
+        ]
+        for f, text, color, y in items:
+            surf = f.render(text, True, color)
+            screen.blit(surf, (300 - surf.get_width() // 2, y))
 
         pygame.display.flip()
 
@@ -92,23 +102,23 @@ def main_menu():
                     return "quit"
 
 
-# ---------- GAME OVER ----------
+# GAME OVER SCREEN
 def game_over_screen(score, level):
-    font = pygame.font.SysFont(None, 48)
+    font  = pygame.font.SysFont(None, 56)
+    small = pygame.font.SysFont(None, 36)
 
     while True:
         screen.fill((0, 0, 0))
 
-        text = font.render("Game Over", True, (255,255,255))
-        score_txt = font.render(f"Score: {score}", True, (200,200,200))
-        lvl_txt = font.render(f"Level: {level}", True, (200,200,200))
-
-        hint = font.render("M - Menu | L - Leaderboard", True, (150,150,150))
-
-        screen.blit(text, (200, 200))
-        screen.blit(score_txt, (220, 260))
-        screen.blit(lvl_txt, (220, 310))
-        screen.blit(hint, (100, 380))
+        lines = [
+            (font,  "Game Over",                  (255, 255, 255), 180),
+            (small, f"Score: {score}",            (200, 200, 200), 260),
+            (small, f"Level:  {level}",           (200, 200, 200), 300),
+            (small, "M — Menu   L — Leaderboard", (150, 150, 150), 380),
+        ]
+        for f, text, color, y in lines:
+            surf = f.render(text, True, color)
+            screen.blit(surf, (300 - surf.get_width() // 2, y))
 
         pygame.display.flip()
 
@@ -122,21 +132,15 @@ def game_over_screen(score, level):
                     return "leaderboard"
 
 
-# ---------- MAIN ----------
+# MAIN
 def main():
     username = input_username()
 
-    running = True
-
-    while running:
+    while True:
         action = main_menu()
 
         if action == "quit":
             break
-
-        if action == "leaderboard":
-            show_leaderboard()
-            continue
 
         if action == "play":
             score, level = game.run(screen, username)
@@ -147,7 +151,12 @@ def main():
             if after == "leaderboard":
                 show_leaderboard()
             elif after == "quit":
-                running = False
+                break
+
+        if action == "leaderboard":
+            show_leaderboard()
+
+    pygame.quit()
 
 
 main()

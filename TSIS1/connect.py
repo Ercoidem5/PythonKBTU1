@@ -1,5 +1,3 @@
-
-
 import psycopg2
 from config import DB_CONFIG
 
@@ -14,11 +12,9 @@ def get_connection():
 
 
 def create_database_if_not_exists():
-
-
     tmp_cfg = {**DB_CONFIG, "database": "postgres"}
     conn = psycopg2.connect(**tmp_cfg)
-    conn.autocommit = True          
+    conn.autocommit = True
     cur = conn.cursor()
 
     db_name = DB_CONFIG["database"]
@@ -27,7 +23,7 @@ def create_database_if_not_exists():
         cur.execute(f'CREATE DATABASE "{db_name}"')
         print(f"Database '{db_name}' created.")
     else:
-        print(f" Database '{db_name}' already exists.")
+        print(f"Database '{db_name}' already exists.")
 
     cur.close()
     conn.close()
